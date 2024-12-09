@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决方案项", "{2443DAA4-8761-4D80-AC6A-9ED56A956664}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LKTool", "LKTool\LKTool.csproj", "{75D46738-7DAF-4A3D-9E0C-68460A9D13FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75D46738-7DAF-4A3D-9E0C-68460A9D13FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75D46738-7DAF-4A3D-9E0C-68460A9D13FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75D46738-7DAF-4A3D-9E0C-68460A9D13FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75D46738-7DAF-4A3D-9E0C-68460A9D13FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ADB82D16-8FB8-418B-A226-E2B935449A1D}
+	EndGlobalSection
+EndGlobal
