@@ -15,7 +15,7 @@ namespace LK
         {
             get
             {
-                return m_maxRetained;
+                return _maxRetained;
             }
         }
 
@@ -26,18 +26,18 @@ namespace LK
         {
             get
             {
-                return m_stack.Count;
+                return _stack.Count;
             }
         }
         
         private const int DefaultRetained = 4;
         private const int DefaultSizeFactor = 2;
-        private Stack<T> m_stack;
-        private Queue<int> m_DepthPerRound;
-        private IPooledObjectPolicy<T> m_policy;
-        private int m_maxRetained;
-        private int m_currentDepth;
-        private int m_counter;
+        private readonly Stack<T> _stack;
+        private readonly Queue<int> _depthPerRound;
+        private readonly IPooledObjectPolicy<T> _policy;
+        private int _maxRetained;
+        private int _currentDepth;
+        private int _counter;
 
         /// <summary>
         /// 使用指定的池策略初始化一个新的动态池
@@ -66,32 +66,32 @@ namespace LK
                 throw new ArgumentOutOfRangeException(nameof(maximumRetained), maximumRetained, "Non-negative number required.");
             }
 
-            m_policy = policy;
-            m_maxRetained = maximumRetained;
-            m_stack = new Stack<T>(maximumRetained);
-            m_DepthPerRound = new Queue<int>();
-            m_currentDepth = 0;
+            _policy = policy;
+            _maxRetained = maximumRetained;
+            _stack = new Stack<T>(maximumRetained);
+            _depthPerRound = new Queue<int>();
+            _currentDepth = 0;
             //m_counter = 0;
 
             for (int i = 0; i < DefaultSizeFactor; i++)
             {
-                m_DepthPerRound.Enqueue(maximumRetained);
+                _depthPerRound.Enqueue(maximumRetained);
             }
         }
 
         public T Get()
         {
             T res;
-            if (m_stack.Count > 0)
+            if (_stack.Count > 0)
             {
-                res = m_stack.Pop();
+                res = _stack.Pop();
             }
             else
             {
-                res = m_policy.Create();
+                res = _policy.Create();
             }
 
-            m_currentDepth += 1;
+            _currentDepth += 1;
             TryResize();
 
             return res;
@@ -99,22 +99,22 @@ namespace LK
 
         public void Return(T obj)
         {
-            if (m_stack.Contains(obj))
+            if (_stack.Contains(obj))
             {
                 throw new ArgumentException("The pool already contains the specified reference.", nameof(obj));
             }
 
-            if (!m_policy.Return(obj))
+            if (!_policy.Return(obj))
             {
-                m_policy.Destroy(obj);
+                _policy.Destroy(obj);
             }
             else
             {
-                m_stack.Push(obj);
+                _stack.Push(obj);
             }
 
-            m_DepthPerRound.Enqueue(m_currentDepth);
-            m_DepthPerRound.Dequeue();
+            _depthPerRound.Enqueue(_currentDepth);
+            _depthPerRound.Dequeue();
             TryResize();
         }
 
@@ -123,28 +123,28 @@ namespace LK
         /// </summary>
         public void TryResize()
         {
-            m_counter += 1;
-            if (m_counter >= m_maxRetained)
+            _counter += 1;
+            if (_counter >= _maxRetained)
             {
-                m_counter = 0;
+                _counter = 0;
 
                 float newSize = 0;
-                foreach (float depth in m_DepthPerRound)
+                foreach (float depth in _depthPerRound)
                 {
-                    newSize += depth / m_DepthPerRound.Count;
+                    newSize += depth / _depthPerRound.Count;
                 }
 
-                float offset = Math.Abs(newSize - m_maxRetained);
+                float offset = Math.Abs(newSize - _maxRetained);
 
-                if (offset > m_maxRetained * 0.10f)
+                if (offset > _maxRetained * 0.10f)
                 {
-                    m_maxRetained = (int)Math.Ceiling(newSize);
+                    _maxRetained = (int)Math.Ceiling(newSize);
                 }
 
-                while (m_stack.Count > m_maxRetained)
+                while (_stack.Count > _maxRetained)
                 {
-                    T obj = m_stack.Pop();
-                    m_policy.Destroy(obj);
+                    T obj = _stack.Pop();
+                    _policy.Destroy(obj);
                 }
             }
         }

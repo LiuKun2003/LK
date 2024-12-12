@@ -8,6 +8,6 @@
         /// <summary>
         /// 获取数据模型
         /// </summary>
-	    public T GetModel<T>() where T : IModel;
+	    public T GetModel<T>() where T : class, IModel, new();
     }
 }

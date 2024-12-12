@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Other\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EditorConfigFiles Remove="C:\Users\22654\Documents\Unity Project\LK\CommonLibrary\.editorconfig" />
   </ItemGroup>
 

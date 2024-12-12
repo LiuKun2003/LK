@@ -4,23 +4,23 @@ using System.Collections.Concurrent;
 namespace LK
 {
     /// <summary>
-    /// 单例收集器，此类实现单例模式并且保存其他类型作为唯一实例
+    /// 实例收集器，此类实现单例模式并且保存其他类型作为唯一实例
     /// </summary>
-    public sealed class SingletonCollector
+    public sealed class InstanceCollector
     {
-        private readonly static Lazy<SingletonCollector> s_instance = new Lazy<SingletonCollector>(() =>
+        private readonly static Lazy<InstanceCollector> s_instance = new Lazy<InstanceCollector>(() =>
         {
-            SingletonCollector collector = new SingletonCollector();
+            InstanceCollector collector = new InstanceCollector();
             collector.Initialize();
             return collector;
         });
 
-        private SingletonCollector() { }
+        private InstanceCollector() { }
 
         /// <summary>
-        /// 获取<see cref="SingletonCollector"></see>唯一实例。
+        /// 获取<see cref="InstanceCollector"></see>唯一实例。
         /// </summary>
-        public static SingletonCollector Instance => s_instance.Value;
+        public static InstanceCollector Instance => s_instance.Value;
 
         private ConcurrentDictionary<Type, object> _objects;
 
@@ -35,7 +35,7 @@ namespace LK
         /// <summary>
         /// 获取保存的类型的实例。
         /// </summary>
-        public T GetController<T>() where T : class, new()
+        public T GetInstance<T>() where T : class, new()
         {
             return _objects.GetOrAdd(typeof(T), (type) =>
             {

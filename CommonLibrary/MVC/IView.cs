@@ -8,6 +8,6 @@
         /// <summary>
         /// 获取控制器
         /// </summary>
-        public T GetController<T>() where T : IController;
+        public T GetController<T>() where T : class, IController, new();
     }
 }
