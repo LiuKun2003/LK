@@ -35,13 +35,9 @@ namespace LK
         /// <summary>
         /// 获取保存的类型的实例。
         /// </summary>
-        public T GetInstance<T>() where T : class, new()
+        public T GetInstance<T>(Func<T> valueFactory) where T : class
         {
-            return _objects.GetOrAdd(typeof(T), (type) =>
-            {
-                T res = new T();
-                return res;
-            }) as T;
+            return _objects.GetOrAdd(typeof(T), valueFactory) as T;
         }
     }
 }
