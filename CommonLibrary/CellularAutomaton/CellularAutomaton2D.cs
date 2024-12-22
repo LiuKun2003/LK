@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LK
+﻿namespace LK
 {
     /// <summary>
     /// 表示由规则和网格构成的二维细胞自动机。
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class CellularAutomaton2D<T>
+    public class CellularAutomaton2D<T> : ICellularAutomaton
     {
         private IGrid2D<T> _grid;
         private IRule2D<T> _rule;

@@ -4,7 +4,7 @@
     /// 表示由规则和网格构成的三维细胞自动机。
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class CellularAutomaton3D<T>
+    public class CellularAutomaton3D<T> : ICellularAutomaton
     {
         private IGrid3D<T> _grid;
         private IRule3D<T> _rule;

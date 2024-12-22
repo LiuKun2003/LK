@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace LK
@@ -54,42 +55,14 @@ namespace LK
 
         public IEnumerable<T> GetNeighbors(int x, int y, int z)
         {
-            for (int i = 0; i <= 1; i++)
+            foreach (var neighbor in _grid.Surround(x, y, z))
             {
-                for (int j = 0; j <= 1; j++)
-                {
-                    for (int k = 0; k <= 1; k++)
-                    {
-                        if (!(i == 0 && j == 0 && k == 0))
-                        {
-                            int m = x + i;
-                            if (m < 0 || m >= _width) continue;
-                            int n = y + j;
-                            if (n < 0 || n >= _height) continue;
-                            int u = z + k;
-                            yield return _grid[m, n, u];
-                        }
-                    }
-                }
+                yield return neighbor;
             }
         }
 
-        public int CountNeighbors(int x, int y, int z, Predicate<T> predicate)
-        {
-            if (predicate == null)
-            {
-                throw new ArgumentNullException(nameof(predicate));
-            }
+        public IEnumerator<T> GetEnumerator() => (IEnumerator<T>)_grid.GetEnumerator();
 
-            int res = 0;
-            foreach (T neighbor in GetNeighbors(x, y, z))
-            {
-                if (predicate(neighbor))
-                {
-                    res++;
-                }
-            }
-            return res;
-        }
+        IEnumerator IEnumerable.GetEnumerator() => _grid.GetEnumerator();
     }
 }
