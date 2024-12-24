@@ -8,7 +8,7 @@ namespace LK
     /// </summary>
     public sealed class InstanceCollector
     {
-        private readonly static Lazy<InstanceCollector> s_instance = new Lazy<InstanceCollector>(() =>
+        private static readonly Lazy<InstanceCollector> s_instance = new Lazy<InstanceCollector>(() =>
         {
             InstanceCollector collector = new InstanceCollector();
             collector.Initialize();

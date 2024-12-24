@@ -7,7 +7,6 @@ namespace LK
     /// <summary>
     /// 用于细胞自动机的三维网格。
     /// </summary>
-    /// <typeparam name="T"></typeparam>
     public class CellGrid3D<T> : IGrid3D<T>
     {
         private T[,,] _grid;

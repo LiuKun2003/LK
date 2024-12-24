@@ -7,7 +7,6 @@ namespace LK
     /// <summary>
     /// 用于细胞自动机的二维网格。
     /// </summary>
-    /// <typeparam name="T"></typeparam>
     public class CellGrid2D<T> : IGrid2D<T>
     {
         private T[,] _grid;

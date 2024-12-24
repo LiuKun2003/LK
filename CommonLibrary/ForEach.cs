@@ -131,7 +131,7 @@ namespace LK
         /// <returns>包含了下标的迭代器。</returns>
         public static IEnumerable<int> Range(int xLimit)
         {
-            for(int x = 0; x < xLimit; x++)
+            for (int x = 0; x < xLimit; x++)
             {
                 yield return x;
             }
@@ -203,7 +203,7 @@ namespace LK
         /// 获取数组的下标。
         /// </summary>
         /// <returns>包含了下标的迭代器。</returns>
-        public static IEnumerable<(int, int, int)> Range3D<T>(T[,,] array)
+        public static IEnumerable<(int, int, int)> Range3D<T>(this T[,,] array)
         {
             int xlimit = array.GetLength(0);
             int ylimit = array.GetLength(1);
@@ -216,6 +216,42 @@ namespace LK
                     {
                         yield return (x, y, z);
                     }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 使用指定的步长进行迭代。
+        /// </summary>
+        public static IEnumerable<T> Step<T>(this IEnumerable<T> enumerable, int step)
+        {
+            int counter = 0;
+            foreach (T item in enumerable)
+            {
+                if (counter == step || counter == 0)
+                {
+                    counter = 0;
+                    yield return item;
+                }
+                counter++;
+            }
+        }
+
+        /// <summary>
+        /// 使用指定的开始位置进行迭代。
+        /// </summary>
+        public static IEnumerable<T> Start<T>(this IEnumerable<T> enumerable, int start)
+        {
+            int counter = 0;
+            foreach (T item in enumerable)
+            {
+                if (counter >= start)
+                {
+                    yield return item;
+                }
+                else
+                {
+                    counter++;
                 }
             }
         }
