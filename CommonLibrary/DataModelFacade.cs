@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LK
+﻿namespace LK.CommonLibrary
 {
     /// <summary>
     /// 数据模型外观基类

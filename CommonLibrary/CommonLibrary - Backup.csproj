@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>annotations</Nullable>
     <AssemblyName>LK.$(MSBuildProjectName)</AssemblyName>
-    <RootNamespace>LK.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
@@ -18,10 +18,6 @@
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Random\" />
   </ItemGroup>
 
 </Project>

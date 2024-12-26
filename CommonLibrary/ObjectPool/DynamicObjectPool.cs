@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 namespace LK
 {
@@ -29,7 +29,7 @@ namespace LK
                 return _stack.Count;
             }
         }
-        
+
         private const int DefaultRetained = 4;
         private const int DefaultSizeFactor = 2;
         private readonly Stack<T> _stack;

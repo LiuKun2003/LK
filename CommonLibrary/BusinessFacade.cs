@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LK
+﻿namespace LK.CommonLibrary
 {
     /// <summary>
     /// 业务逻辑外观基类

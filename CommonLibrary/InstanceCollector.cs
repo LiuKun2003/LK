@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Concurrent;
 
-namespace LK
+namespace LK.CommonLibrary
 {
     /// <summary>
-    /// 实例收集器，此类实现单例模式并且保存其他类型作为唯一实例
+    /// 实例收集器，此类实现单例模式并且保存其他类型实例作为唯一实例。
     /// </summary>
     public sealed class InstanceCollector
     {

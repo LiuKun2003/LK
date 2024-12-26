@@ -47,10 +47,7 @@ namespace LK
 
         public IEnumerable<T> GetNeighbors(int x, int y)
         {
-            foreach (var neighbor in _grid.Surround(x, y))
-            {
-                yield return neighbor;
-            }
+            throw new NotImplementedException();
         }
 
         public IEnumerator<T> GetEnumerator() => (IEnumerator<T>)_grid.GetEnumerator();
